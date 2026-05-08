@@ -1,4 +1,7 @@
+using CRUDDoMVC.Services;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddSingleton<UsuarioService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

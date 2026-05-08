@@ -96,3 +96,4 @@ C:\Users\rbueno\source\repos\CRUDDoMVC\CRUDDoMVC\obj\Debug\net10.0\refint\CRUDDo
 C:\Users\rbueno\source\repos\CRUDDoMVC\CRUDDoMVC\obj\Debug\net10.0\CRUDDoMVC.pdb
 C:\Users\rbueno\source\repos\CRUDDoMVC\CRUDDoMVC\obj\Debug\net10.0\CRUDDoMVC.genruntimeconfig.cache
 C:\Users\rbueno\source\repos\CRUDDoMVC\CRUDDoMVC\obj\Debug\net10.0\ref\CRUDDoMVC.dll
+C:\Users\rbueno\source\repos\CRUDDoMVC\CRUDDoMVC\obj\Debug\net10.0\CRUDDoMVC.sourcelink.json

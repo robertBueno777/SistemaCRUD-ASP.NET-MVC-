@@ -1,9 +1,17 @@
-﻿<div ></div>
-<div class="mb-3">
-    <label for="formGroupExampleInput" class="form-label">Example label</label>
-    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder">
+﻿@model UsuarioModel;
+
+<div class="text-center">
+    <h1 class="display-4">Cadastro de usuario</h1>
 </div>
-<div class="mb-3">
-    <label for="formGroupExampleInput2" class="form-label">Another label</label>
-    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
-</div>
+<form asp-action="CadastrarUsuario" asp-controller="Usuario" method="post">     
+    <div class="mb-3">
+        <label asp-for="NomeUsuario">insira o nome agui</label>
+        <input asp-for="NomeUsuario" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="IdadeUsuario" >idade</label>
+        <input asp-for="IdadeUsuario" class="form-control" type="number" >
+    </div>
+    <button type="submit" class="btn-primary">Salvar Usuario</button>
+</form>
+
