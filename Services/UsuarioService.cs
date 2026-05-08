@@ -5,20 +5,33 @@ namespace CRUDDoMVC.Services
     public class UsuarioService
     {
         private readonly List<UsuarioModel> _listaUsuario = new List<UsuarioModel>();
+        public List<UsuarioModel> ListarUsuarios()
+        {
+            return _listaUsuario;
+        }
         public void CadastrarUsuario(UsuarioModel usuario)
         {
-            usuario.Id = 1;
+          
             _listaUsuario.Add(usuario);
-
-            foreach(var u in _listaUsuario)
+            var ultimoUsua = _listaUsuario.LastOrDefault();
+            if (ultimoUsua.Id == 0)
             {
-                u.Id = +1;
-                Console.WriteLine(u.NomeUsuario);
+                usuario.Id = 1;
+            }
+            else
+            {
+                usuario.Id = _listaUsuario.Max(u => u.Id) + 1;
             }
         }
-        public void EditarUsuario()
+        public UsuarioModel AcharUsuarioPorNome(string nome)
         {
-
+            var usuarioASerEditado = _listaUsuario.FirstOrDefault(u => u.NomeUsuario == nome);
+            return usuarioASerEditado;
+        }
+        public void EditarUsuario(UsuarioModel usuario)
+        {
+            usuario.NomeUsuario = usuario.NomeUsuario;
+            usuario.IdadeUsuario = usuario.IdadeUsuario;
         }
         
     }

@@ -1,5 +1,8 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model UsuarioModel;
+
+<form asp-action="EditarUsuario" asp-controller="Usuario" method="post">     
+    <div class="mb-3">
+        <label asp-for="NomeUsuario">insira o nome do usuario que será editado</label>
+        <input asp-for="NomeUsuario" class="form-control" />
+    </div>
+</form>

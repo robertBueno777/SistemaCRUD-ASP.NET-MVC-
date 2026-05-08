@@ -21,9 +21,17 @@ namespace CRUDDoMVC.Controllers
             _usuarioService.CadastrarUsuario(usuario);
             return RedirectToAction("Index", "Home");
         }
-        public IActionResult EditarUsuario()
+        [HttpGet]
+        public IActionResult EditarUsuario(int id)
         {
             return View();
+        }
+        [HttpPost]
+        public IActionResult EditarUsuario(UsuarioModel novoUsuario)
+        {
+            //var usuarioASerEditado = _usuarioService.AcharUsuarioPorNome(nome);
+            //_usuarioService.EditarUsuario(usuarioASerEditado, novoNome, novaIdade);
+            return RedirectToAction("Index", "Home");
         }
         public IActionResult ExcluirUsuario()
         {
