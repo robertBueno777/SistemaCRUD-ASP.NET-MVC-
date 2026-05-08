@@ -24,14 +24,26 @@ namespace CRUDDoMVC.Controllers
         [HttpGet]
         public IActionResult EditarUsuario(int id)
         {
-            return View();
+            var usu = this._usuarioService.AcharUsuarioPorId(id);
+            return View(usu.Id);
         }
         [HttpPost]
-        public IActionResult EditarUsuario(UsuarioModel novoUsuario)
+        public IActionResult EditarUsuario(UsuarioModel novoUsuario, int id)
         {
-            //var usuarioASerEditado = _usuarioService.AcharUsuarioPorNome(nome);
-            //_usuarioService.EditarUsuario(usuarioASerEditado, novoNome, novaIdade);
-            return RedirectToAction("Index", "Home");
+
+            var usuarioOriginal = _usuarioService.ListarUsuarios().FirstOrDefault(u => u.Id == novoUsuario.Id);
+                                                     
+            if (usuarioOriginal == null)
+            {
+                TempData["MensagemErro"] = "Erro ao tentar editar o usuario";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                TempData["MensagemSucesso"] = "Usuario editado com sucesso";
+            }
+            _usuarioService.EditarUsuario(usuarioOriginal, novoUsuario);
+            return RedirectToAction("Home", "Index");
         }
         public IActionResult ExcluirUsuario()
         {

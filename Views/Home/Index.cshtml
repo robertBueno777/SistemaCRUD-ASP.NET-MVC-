@@ -35,8 +35,8 @@ else if (Model.ToList() != null)
                 <td>@i.IdadeUsuario</td>
                 <td>
                     <div class="d-flex gap-2">
-                        <button type="button" class="btn btn-warning">Editar usuario</button>
-                        <button type="button" class="btn btn-danger">Excluir usuario</button>
+                            <a asp-controller="Usuario" asp-action="EditarUsuario" class="btn btn-warning">Editar usuario </a>
+                            <button type="button" class="btn btn-danger">Excluir usuario</button>
                     </div>
                 </td>
         </tbody>            

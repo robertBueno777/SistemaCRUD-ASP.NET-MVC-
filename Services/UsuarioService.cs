@@ -28,10 +28,15 @@ namespace CRUDDoMVC.Services
             var usuarioASerEditado = _listaUsuario.FirstOrDefault(u => u.NomeUsuario == nome);
             return usuarioASerEditado;
         }
-        public void EditarUsuario(UsuarioModel usuario)
+        public UsuarioModel AcharUsuarioPorId(int id)
         {
-            usuario.NomeUsuario = usuario.NomeUsuario;
-            usuario.IdadeUsuario = usuario.IdadeUsuario;
+            var usuario = _listaUsuario.FirstOrDefault(u => u.Id == id);
+            return usuario;
+        }
+        public void EditarUsuario(UsuarioModel usuarioPrimario, UsuarioModel novoUsu)
+        {
+            usuarioPrimario.NomeUsuario = novoUsu.NomeUsuario;
+            usuarioPrimario.IdadeUsuario = novoUsu.IdadeUsuario;
         }
         
     }
