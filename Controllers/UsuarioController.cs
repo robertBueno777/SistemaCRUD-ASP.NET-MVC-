@@ -50,9 +50,12 @@ namespace CRUDDoMVC.Controllers
             _usuarioService.ExcluirUsuario(id);
             return RedirectToAction("Index", "Home");
         }
-        public IActionResult MostrarUsuario()
+
+        [HttpPost]
+        public IActionResult PesquisarPorUsuario(string nome, int id)
         {
-            return View();
+            var usuario = _usuarioService.PesquisarPorUsuario(id, nome);
+            return RedirectToAction("Index","Home");
         }
         public IActionResult MostrarTodosUsuarios()
         {
