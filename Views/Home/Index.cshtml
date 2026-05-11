@@ -34,17 +34,16 @@ else if (Model.ToList() != null)
                 <td>@i.NomeUsuario</td>
                 <td>@i.IdadeUsuario</td>
                 <td>
-                    <div class="d-flex gap-2">
+                    <div class="d-flex gap-1">
                             <form asp-controller="Usuario" asp-action="EditarUsuario" method="post">
                                 <input type="hidden" name="id" value="@i.Id"/>
                                 <button class="btn btn-warning" type="submit" >Editar usuario</button>
                             </form>
                          
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-@i.Id">
                                 Excluir usuario
                             </button>
-
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="#modal-@i.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -60,14 +59,13 @@ else if (Model.ToList() != null)
                                     </div>
                                 </div>
                             </div>
-
-  
                     </div>
                 </td>
         </tbody>            
     }
 </table>
     }
+
 
    
 
