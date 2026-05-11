@@ -16,7 +16,7 @@ namespace CRUDDoMVC.Services
             var ultimoUsua = _listaUsuario.LastOrDefault();
             if (ultimoUsua.Id == 0)
             {
-                usuario.Id = 1;
+                usuario.Id = _listaUsuario.Max(u => u.Id) + 1;
             }
             else
             {
@@ -33,10 +33,9 @@ namespace CRUDDoMVC.Services
             var usuario = _listaUsuario.FirstOrDefault(u => u.Id == id);
             return usuario;
         }
-        public void EditarUsuario(UsuarioModel usuarioPrimario, UsuarioModel novoUsu)
+        public void EditarUsuario(UsuarioModel usuarioPrimario)
         {
-            usuarioPrimario.NomeUsuario = novoUsu.NomeUsuario;
-            usuarioPrimario.IdadeUsuario = novoUsu.IdadeUsuario;
+            usuarioPrimario = usuarioPrimario;
         }
         
     }

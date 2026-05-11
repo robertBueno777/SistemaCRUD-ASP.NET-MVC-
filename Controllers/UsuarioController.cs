@@ -16,34 +16,41 @@ namespace CRUDDoMVC.Controllers
             return View();
         }
         [HttpPost]
+        public IActionResult SalvarUsuarioEditado(UsuarioModel usuario)
+        {
+            _usuarioService.EditarUsuario(usuario);
+            return RedirectToAction("Index","Home");
+        }
+
+        [HttpPost]
         public IActionResult CadastrarUsuario(UsuarioModel usuario)
         {
             _usuarioService.CadastrarUsuario(usuario);
             return RedirectToAction("Index", "Home");
         }
-        [HttpGet]
-        public IActionResult EditarUsuario(int id)
-        {
-            var usu = this._usuarioService.AcharUsuarioPorId(id);
-            return View(usu.Id);
-        }
+
         [HttpPost]
         public IActionResult EditarUsuario(UsuarioModel novoUsuario, int id)
         {
-
-            var usuarioOriginal = _usuarioService.ListarUsuarios().FirstOrDefault(u => u.Id == novoUsuario.Id);
-                                                     
+            var usuarioOriginal = _usuarioService.ListarUsuarios().FirstOrDefault(u => u.Id == id);                                                     
             if (usuarioOriginal == null)
             {
                 TempData["MensagemErro"] = "Erro ao tentar editar o usuario";
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
                 TempData["MensagemSucesso"] = "Usuario editado com sucesso";
             }
-            _usuarioService.EditarUsuario(usuarioOriginal, novoUsuario);
-            return RedirectToAction("Home", "Index");
+
+            return View(usuarioOriginal);
+        }
+
+
+        public IActionResult ReceberDadosParaEditar(UsuarioModel usuario)
+        {
+            _usuarioService.EditarUsuario(usuario);
+            return RedirectToAction("Index", "Home");
         }
         public IActionResult ExcluirUsuario()
         {

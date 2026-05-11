@@ -1,7 +1,7 @@
 ﻿@model UsuarioModel;
 
-<form asp-action="EditarUsuario" asp-controller="Usuario" method="post">   
-    <input type="hidden" asp-for="Id"/>
+<form asp-action="SalvarUsuarioEditado" asp-controller="Usuario" method="post">
+    <input type="hidden" asp-for="Id" />
     <div class="mb-3">
         <label asp-for="NomeUsuario">insira o novo nome do Usuario.</label>
         <input asp-for="NomeUsuario" class="form-control" />
