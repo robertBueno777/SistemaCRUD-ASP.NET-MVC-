@@ -18,7 +18,8 @@ namespace CRUDDoMVC.Controllers
         [HttpPost]
         public IActionResult SalvarUsuarioEditado(UsuarioModel usuario)
         {
-            _usuarioService.EditarUsuario(usuario);
+            var usuarioOg = _usuarioService.AcharUsuarioPorId(usuario.Id);
+            _usuarioService.EditarUsuario(usuario, usuarioOg);
             return RedirectToAction("Index","Home");
         }
 
@@ -49,7 +50,7 @@ namespace CRUDDoMVC.Controllers
 
         public IActionResult ReceberDadosParaEditar(UsuarioModel usuario)
         {
-            _usuarioService.EditarUsuario(usuario);
+            //_usuarioService.EditarUsuario(usuario);
             return RedirectToAction("Index", "Home");
         }
         public IActionResult ExcluirUsuario()
