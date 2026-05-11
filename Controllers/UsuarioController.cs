@@ -43,19 +43,12 @@ namespace CRUDDoMVC.Controllers
             {
                 TempData["MensagemSucesso"] = "Usuario editado com sucesso";
             }
-
             return View(usuarioOriginal);
         }
-
-
-        public IActionResult ReceberDadosParaEditar(UsuarioModel usuario)
+        public IActionResult ExcluirUsuario(int id)
         {
-            //_usuarioService.EditarUsuario(usuario);
+            _usuarioService.ExcluirUsuario(id);
             return RedirectToAction("Index", "Home");
-        }
-        public IActionResult ExcluirUsuario()
-        {
-            return View();
         }
         public IActionResult MostrarUsuario()
         {

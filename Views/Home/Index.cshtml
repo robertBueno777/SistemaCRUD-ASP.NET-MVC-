@@ -40,13 +40,35 @@ else if (Model.ToList() != null)
                                 <button class="btn btn-warning" type="submit" >Editar usuario</button>
                             </form>
                          
-                            <button type="button" class="btn btn-danger">Excluir usuario</button>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Excluir usuario
+                            </button>
+
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title, text-center" id="exampleModalLabel">Deseja realmente apagar este usuário?</h5>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">não</button>
+                                            <form asp-controller="Usuario" asp-action="ExcluirUsuario" method="post">
+                                                <input type="hidden" name="id" value="@i.Id" />
+                                                <button type="submit" class="btn btn-danger">sim</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+  
                     </div>
                 </td>
         </tbody>            
     }
 </table>
     }
-  
+
+   
 
 

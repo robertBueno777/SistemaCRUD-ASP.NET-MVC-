@@ -22,11 +22,6 @@ namespace CRUDDoMVC.Services
                 usuario.Id = _listaUsuario.Max(u => u.Id) + 1;
             }
         }
-        public UsuarioModel AcharUsuarioPorNome(string nome)
-        {
-            var usuarioASerEditado = _listaUsuario.FirstOrDefault(u => u.NomeUsuario == nome);
-            return usuarioASerEditado;
-        }
         public UsuarioModel AcharUsuarioPorId(int id)
         {
             var usuario = _listaUsuario.FirstOrDefault(u => u.Id == id);
@@ -37,6 +32,10 @@ namespace CRUDDoMVC.Services
             usuarioOg.IdadeUsuario = usuarioEditado.IdadeUsuario;
             usuarioOg.NomeUsuario = usuarioEditado.NomeUsuario;                
         }
-        
+        public void ExcluirUsuario(int id)
+        {
+            var usuario = AcharUsuarioPorId(id);
+            _listaUsuario.Remove(usuario);
+        }
     }
 }
