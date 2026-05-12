@@ -21,7 +21,6 @@ namespace CRUDDoMVC.Controllers
         public IActionResult MostrarUsuario(int id)
         {
             var usuario = _usuarioService.AcharUsuarioPorId(id);
-            //_usuarioService.ExcluirUsuario(usuario.Id);
             return PartialView("_MostrarUsuarios", usuario);
         }
 

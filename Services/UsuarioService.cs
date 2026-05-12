@@ -11,6 +11,10 @@ namespace CRUDDoMVC.Services
         }
         public void CadastrarUsuario(UsuarioModel usuario)
         {
+            if (usuario.IdadeUsuario < 0 || usuario.IdadeUsuario > 120)
+                throw new Exception("Idade de usuario não permitido.");
+            else if (VerificarSeExisteNaListaPorNome(usuario.NomeUsuario) == false)
+                throw new Exception("Usuario ja existe no banco");
             _listaUsuario.Add(usuario);
             var ultimoUsua = _listaUsuario.LastOrDefault();
             if (ultimoUsua.Id == 0)
@@ -21,6 +25,13 @@ namespace CRUDDoMVC.Services
             {
                 usuario.Id = _listaUsuario.Max(u => u.Id) + 1;
             }
+        }
+        public bool VerificarSeExisteNaListaPorNome(string nome)
+        {
+            var usuario = _listaUsuario.FirstOrDefault(u => u.NomeUsuario == nome);
+            if(usuario.NomeUsuario != null)
+                return true;
+            return false;
         }
         public UsuarioModel AcharUsuarioPorId(int id)
         {
