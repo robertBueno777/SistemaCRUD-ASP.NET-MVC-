@@ -18,10 +18,11 @@ namespace CRUDDoMVC.Controllers
 
             return View(lista);
         }
-        public IActionResult MostrarUsuario()
+        public IActionResult MostrarUsuario(int id)
         {
-             var listaUsuarios = _usuarioService.ListarUsuarios();
-            return PartialView("_MostrarUsuarios", listaUsuarios);
+            var usuario = _usuarioService.AcharUsuarioPorId(id);
+            //_usuarioService.ExcluirUsuario(usuario.Id);
+            return PartialView("_MostrarUsuarios", usuario);
         }
 
         public IActionResult Privacy()

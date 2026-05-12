@@ -1,0 +1,11 @@
+﻿@model CRUDDoMVC.Models.UsuarioModel
+<div class="modal-header">
+    <h5 class="modal-title, text-center" id="exampleModalLabel">Deseja realmente apagar este usuário?</h5>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">não</button>
+    <form asp-controller="Usuario" asp-action="ExcluirUsuario" method="post">
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <button type="submit" class="btn btn-danger">sim</button>
+    </form>
+</div>
