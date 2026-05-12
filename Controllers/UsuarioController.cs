@@ -27,7 +27,6 @@ namespace CRUDDoMVC.Controllers
         [HttpGet]
         public IActionResult EditarUsuario(int Id)
         {
-
             var usuarioOriginal = _usuarioService.ListarUsuarios().FirstOrDefault(u => u.Id == Id);
             return View(usuarioOriginal);
         }

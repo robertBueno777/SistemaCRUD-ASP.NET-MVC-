@@ -34,24 +34,49 @@ else if (Model.ToList() != null)
             <tbody>
                 <tr>
                     <th scope="row">@i.Id</th>
-                    <th scope="row">0</th>
                     <td>@i.NomeUsuario</td>
                     <td>@i.IdadeUsuario</td>
                     <td>
                         <div class="d-flex gap-1">
                             <a asp-controller="Usuario" asp-action="EditarUsuario" asp-route-id="@i.Id" class="btn btn-warning">Editar</a>
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-@i.Id" data-id="123">
+                            <button type="button" class="btn btn-danger btn btn-ver-usuarios" data-bs-toggle="modal" data-bs-target="#modal-@i.Id" data-id="123">
                                 Excluir usuario
                             </button>
-
-
+                            aqui vamos criar a casca do modal colocando algumas infos pra vincular com o ajax =)
+                            modal fade ta basicamente falando que estamos criando uma modal(fundo cinza janelinha aberta)
+                            modal dialog ta falando que não poderemos sair da modal enquanto nao interagirmos com ela
+                            modal content faz o usuario focar em uma informação e mantem o usuario no contexto da tarefa atual
+                            <div class="modal fade" id="modalUsuario" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content" id="conteudoModal">
+                                    </div>
+                                </div>
+                            </div>
+                            @section Scripts{
+                                <script>
+                                                        $(".btn-ver-usuarios").click(function(){
+                                                            var idTarefa = $(this).data(id);
+                                                            $.ajax({
+                                                                url:'@Url.Action("MostrarUsuario", "listaUsuarios")',
+                                                                type: 'GET',
+                                                                data: { id : idTarefa},
+                                                                sucess: function (resultadoHtml){
+                                                                    $("#conteudoModal").html(resultadoHtml);
+                                                                    $("#modalUsuario").modal("show");
+                                                                },
+                                                                error: function () {
+                                                                    alert("Erro ao buscar os detalhes da tarefa")
+                                                                }
+                                                            )
+                                                        })
+                                </script>
+                            }
                         </div>
                     </td>
                 </tbody>
             }
         </table>
     }
-    <th scope="row">100</th>
 
 
    
