@@ -8,9 +8,11 @@
 <br />
 <div class="text-center" redirect="">
     <a asp-controller="Usuario" asp-action="CadastrarUsuario" class="btn btn-success">cadastrar usuario </a>
+
 </div>
 
-@if(Model.ToList().Count == 0)
+
+@if (Model.ToList().Count == 0)
 {
     <h3>
         Lista vazia no momento.
@@ -20,52 +22,36 @@
 else if (Model.ToList() != null)
 {
     <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Idade</th>
-                </tr>
-            </thead>
-    @foreach (var i in Model.ToList())
-    {
-        <tbody>
+        <thead>
             <tr>
-                <th scope="row">@i.Id</th>
-                <td>@i.NomeUsuario</td>
-                <td>@i.IdadeUsuario</td>
-                <td>
-                    <div class="d-flex gap-1">
-                            <form asp-controller="Usuario" asp-action="EditarUsuario" method="post">
-                                <input type="hidden" name="id" value="@i.Id"/>
-                                <button class="btn btn-warning" type="submit" >Editar usuario</button>
-                            </form>
-                         
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-@i.Id">
+                <th scope="col">Id</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Idade</th>
+            </tr>
+        </thead>
+        @foreach (var i in Model.ToList())
+        {
+            <tbody>
+                <tr>
+                    <th scope="row">@i.Id</th>
+                    <th scope="row">0</th>
+                    <td>@i.NomeUsuario</td>
+                    <td>@i.IdadeUsuario</td>
+                    <td>
+                        <div class="d-flex gap-1">
+                            <a asp-controller="Usuario" asp-action="EditarUsuario" asp-route-id="@i.Id" class="btn btn-warning">Editar</a>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-@i.Id" data-id="123">
                                 Excluir usuario
                             </button>
-                            <div class="modal fade" id="modal-@i.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title, text-center" id="exampleModalLabel">Deseja realmente apagar este usuário?</h5>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">não</button>
-                                            <form asp-controller="Usuario" asp-action="ExcluirUsuario" method="post">
-                                                <input type="hidden" name="id" value="@i.Id" />
-                                                <button type="submit" class="btn btn-danger">sim</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                </td>
-        </tbody>            
+
+
+                        </div>
+                    </td>
+                </tbody>
+            }
+        </table>
     }
-</table>
-    }
+    <th scope="row">100</th>
 
 
    

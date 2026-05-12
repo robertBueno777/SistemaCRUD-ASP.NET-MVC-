@@ -16,34 +16,26 @@ namespace CRUDDoMVC.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult SalvarUsuarioEditado(UsuarioModel usuario)
-        {
-            var usuarioOg = _usuarioService.AcharUsuarioPorId(usuario.Id);
-            _usuarioService.EditarUsuario(usuario, usuarioOg);
-            return RedirectToAction("Index","Home");
-        }
-
-        [HttpPost]
         public IActionResult CadastrarUsuario(UsuarioModel usuario)
         {
             _usuarioService.CadastrarUsuario(usuario);
             return RedirectToAction("Index", "Home");
         }
-
-        [HttpPost]
-        public IActionResult EditarUsuario(UsuarioModel novoUsuario, int id)
+        //tratar excecoes
+        //fazer exibir somente um item ou varios dependendo da pesquisa na view
+        //
+        [HttpGet]
+        public IActionResult EditarUsuario(int Id)
         {
-            var usuarioOriginal = _usuarioService.ListarUsuarios().FirstOrDefault(u => u.Id == id);                                                     
-            if (usuarioOriginal == null)
-            {
-                TempData["MensagemErro"] = "Erro ao tentar editar o usuario";
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                TempData["MensagemSucesso"] = "Usuario editado com sucesso";
-            }
+
+            var usuarioOriginal = _usuarioService.ListarUsuarios().FirstOrDefault(u => u.Id == Id);
             return View(usuarioOriginal);
+        }
+        [HttpPost]
+        public IActionResult EditarUsuario(UsuarioModel novoUsuario)
+        {
+            _usuarioService.EditarUsuario(novoUsuario);
+            return RedirectToAction("Index", "Home");
         }
         public IActionResult ExcluirUsuario(int id)
         {
@@ -63,3 +55,7 @@ namespace CRUDDoMVC.Controllers
         }
     }
 }
+//uma modal só tavlez vou utilizar o ajax
+//colocar endereco com usuario
+//
+
