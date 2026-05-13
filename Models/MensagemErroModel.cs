@@ -2,7 +2,7 @@
 {
     public class MensagemErroModel
     {
-        public int Id { get; set; } 
+        public int IdErro { get; set; } 
         public string MensagemDeErro { get; set; } = string.Empty;
     }
 }

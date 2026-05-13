@@ -14,26 +14,32 @@ namespace CRUDDoMVC.Services
         {
             return _listaUsuario;
         }
-        public void CadastrarUsuario(UsuarioModel usuario)
+        public bool VerificarSeUsuarioTemErro(UsuarioModel usuario)
         {
             _mensagemErroService.AdicionarNovaNotificacao(usuario, _listaUsuario);
             if (_mensagemErroService.TemNotificacao(usuario) == true)
             {
                 _mensagemErroService.ObterNotificacoes(usuario);
+                return false;
             }
-            else
+            return true;
+        }
+        public void CadastrarUsuario(UsuarioModel usuario)
+        {
+            if(VerificarSeUsuarioTemErro(usuario) == true)
             {
                 _listaUsuario.Add(usuario);
+                var ultimoUsua = _listaUsuario.LastOrDefault();
+                if (ultimoUsua.Id == 0)
+                {
+                    usuario.Id = _listaUsuario.Max(u => u.Id) + 1;
+                }
+                else
+                {
+                    usuario.Id = _listaUsuario.Max(u => u.Id) + 1;
+                }
             }
-            var ultimoUsua = _listaUsuario.LastOrDefault();
-            if (ultimoUsua.Id == 0)
-            {
-                usuario.Id = _listaUsuario.Max(u => u.Id) + 1;
-            }
-            else
-            {
-                usuario.Id = _listaUsuario.Max(u => u.Id) + 1;
-            }
+      
         }
         public bool VerificarSeExisteNaListaPorNome(string nome)
         {
