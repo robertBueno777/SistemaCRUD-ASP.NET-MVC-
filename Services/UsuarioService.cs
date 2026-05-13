@@ -14,7 +14,7 @@ namespace CRUDDoMVC.Services
         {
             return _listaUsuario;
         }
-        public bool VerificarSeUsuarioTemErro(UsuarioModel usuario)
+        public bool VerificarSeUsuarioTemErro(UsuarioModel usuario)//polish
         {
             _mensagemErroService.AdicionarNovaNotificacao(usuario, _listaUsuario);
             if (_mensagemErroService.TemNotificacao(usuario) == true)
@@ -38,8 +38,7 @@ namespace CRUDDoMVC.Services
                 {
                     usuario.Id = _listaUsuario.Max(u => u.Id) + 1;
                 }
-            }
-      
+            } 
         }
         public bool VerificarSeExisteNaListaPorNome(string nome)
         {

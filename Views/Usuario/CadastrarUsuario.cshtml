@@ -13,5 +13,16 @@
         <input asp-for="IdadeUsuario" class="form-control" type="number" >
     </div>
     <button type="submit" class="btn-primary">Salvar Usuario</button>
+
 </form>
+@if(Model.MensagemErro.Any())
+{
+    @foreach(var e in Model.MensagemErro)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 20px;" >
+            <strong>ERRO @e.IdErro</strong> : @e.MensagemDeErro
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+}
 

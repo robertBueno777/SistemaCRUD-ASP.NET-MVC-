@@ -7,18 +7,25 @@ namespace CRUDDoMVC.Controllers
     public class UsuarioController : Controller
     {
         private readonly UsuarioService _usuarioService;
-        public UsuarioController(UsuarioService usuarioService)
+        private readonly MensagemErroService _mensagemErroService;
+        public UsuarioController(UsuarioService usuarioService, MensagemErroService mensagemService)
         {
             _usuarioService = usuarioService;
+            _mensagemErroService = mensagemService;
         }
         public IActionResult CadastrarUsuario()
         {
-            return View();
+            return View(new UsuarioModel());
         }
         [HttpPost]
         public IActionResult CadastrarUsuario(UsuarioModel usuario)
         {
             _usuarioService.CadastrarUsuario(usuario);
+            if (_mensagemErroService.ObterNotificacoes(usuario).Any())
+            {
+                return View(usuario);
+            }
+            ;
             return RedirectToAction("Index", "Home");
         }
         //tratar excecoes

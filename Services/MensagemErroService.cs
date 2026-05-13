@@ -18,7 +18,7 @@ namespace CRUDDoMVC.Services
                 usuario.MensagemErro.Add(new MensagemErroModel { IdErro = 3, MensagemDeErro = "usuario ja cadastrado" });
         }
         public bool TemNotificacao(UsuarioModel usuario)
-        {
+            {
             if (usuario.MensagemErro.Count == 0)
             {
                 Console.WriteLine("testepraverseentrou");
