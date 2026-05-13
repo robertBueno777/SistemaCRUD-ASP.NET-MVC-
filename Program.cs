@@ -2,6 +2,8 @@ using CRUDDoMVC.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<UsuarioService>();
+builder.Services.AddSingleton<MensagemErroService>();
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
