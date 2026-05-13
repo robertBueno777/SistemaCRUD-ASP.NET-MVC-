@@ -4,6 +4,7 @@ namespace CRUDDoMVC.Services
 {
     public class UsuarioService
     {
+        
         private readonly List<UsuarioModel> _listaUsuario = new List<UsuarioModel>();
         public List<UsuarioModel> ListarUsuarios()
         {
@@ -11,8 +12,14 @@ namespace CRUDDoMVC.Services
         }
         public void CadastrarUsuario(UsuarioModel usuario)
         {
+            var mensagemErro = new MensagemErro();
+
             if (usuario.IdadeUsuario < 0 || usuario.IdadeUsuario > 120)
+            {
+                mensagemErro.Id = 
                 throw new Exception("Idade de usuario não permitido.");
+            }
+                
             else if (VerificarSeExisteNaListaPorNome(usuario.NomeUsuario) == false)
                 throw new Exception("Usuario ja existe no banco");
             _listaUsuario.Add(usuario);
